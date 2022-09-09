@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'easy_fin_frontend';
+
+
+
+  public getTitle (){
+    return 'easy_fin_frontend';
+  }
+
+
 }
