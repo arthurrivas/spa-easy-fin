@@ -8,17 +8,17 @@
   </head>
   <body> -->
 <mat-sidenav-container class="example-sidenav-container">
-  <mat-sidenav #sidenav mode="side" opened="isExpanded">
-    <mat-list-item>
-      <mat-icon mat-list-icon>home</mat-icon>
-    </mat-list-item>
-  </mat-sidenav>
-  
   <mat-sidenav-content>
     <mat-toolbar>
-      <h1>hi</h1>
+      <button (click)="opened= !opened"><mat-icon>home</mat-icon></button>
     </mat-toolbar>
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
+  <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+    <mat-list-item routerLink="/dashboard">
+      <p>Dashboard</p>
+    </mat-list-item>
+  </mat-sidenav>
   
   <!-- <mat-toolbar color="primary" class="example-toolbar">
     <button mat-icon-button>
