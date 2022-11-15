@@ -1,17 +1,35 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav-content>
-    <mat-toolbar class="mat-toolbar">
-      <button (click)="opened= !opened"><mat-icon>menu</mat-icon></button>
-    </mat-toolbar>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-  <mat-sidenav #sidenav mode="side" [(opened)]="opened" class="mat-sidenav">
-    <mat-list-item routerLink="/profile">
-      <p>Meu perfil</p>
-    </mat-list-item>
-    <mat-list-item routerLink="/dashboard">
-      <p>Dashboard</p>
-    </mat-list-item>
-  </mat-sidenav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Easy-fin</title>
+</head>
+<body>
   
- --></mat-sidenav-container>
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav mode="side" [(opened)]="opened" class="mat-sidenav">
+      <mat-list-item routerLink="/profile">
+        <p>Meu perfil</p>
+      </mat-list-item>
+      <mat-list-item routerLink="/dashboard">
+        <p>Dashboard</p>
+      </mat-list-item>
+    </mat-sidenav>
+    
+    <mat-sidenav-content>
+      <mat-toolbar class="mat-toolbar">
+        <button (click)="opened= !opened"><mat-icon>menu</mat-icon></button>
+      </mat-toolbar>
+      <div class="main-router">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+
+   --></mat-sidenav-container>
+  
+</body>
+</html>
+
+

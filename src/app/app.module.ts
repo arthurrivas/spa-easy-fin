@@ -1,5 +1,6 @@
 import { NgModule, Component } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 
@@ -7,14 +8,18 @@ import { AppComponent } from './app.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
+// ANGULAR MATERIALS
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatIconModule } from '@angular/material/icon'
 import { MatCardModule } from '@angular/material/card'
-import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatInputModule } from '@angular/material/input'
+import { MatGridListModule } from '@angular/material/grid-list';
+import { StoreModule } from '@ngrx/store'
 
 const routes: Routes = [
   {
@@ -37,7 +42,11 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatGridListModule,
     RouterModule.forRoot(routes),
+    StoreModule.forRoot({}, {}),
   ],
   exports: [
     BrowserModule,
@@ -54,6 +63,4 @@ const routes: Routes = [
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-
-}
+export class AppModule {}
