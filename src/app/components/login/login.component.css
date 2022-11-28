@@ -1,0 +1,33 @@
+
+.main-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.content-form {
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 30px 60px 0 gray;
+    text-align: center;
+    width: 45%;
+    height: 350px;
+    transition: all 0.5s ease-in-out;
+}
+ .content-form :hover{
+    box-shadow: 0 30px 60px e Orgb(54, 54, 54);
+ }
+
+.input-login {
+    background-color: #f6f6f6;
+    border: none;
+    color: #ded;
+    padding: 15px 0px;
+    text-align: center;
+    font-size: 16px;
+    margin: 5px;
+    width: 90%;
+    border: 2px solid #f6f6f6;
+    transition: all 0.5s ease-in-out;
+    border-radius: 5px 5px 5px 5px;
+}

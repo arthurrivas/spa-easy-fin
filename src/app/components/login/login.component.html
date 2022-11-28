@@ -1,0 +1,16 @@
+
+<body class="main-content">
+  <form class="content-form " *ngIf="loginForm" [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+  
+    <label>
+      Email:
+      <input type="text" formControlName="email">
+    </label>
+  <label>
+      Senha:
+      <input type="text" formControlName="password">
+    </label>
+  <button type="submit">Submit Application</button>
+  </form>
+
+</body>
