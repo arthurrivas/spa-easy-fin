@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,7 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  opened = false
+  opened = false;
+
+  constructor(public router: Router) {}
 }

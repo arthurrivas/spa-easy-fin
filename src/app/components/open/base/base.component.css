@@ -1,0 +1,15 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+.main-router{
+  margin: 2% 7% 3% 7%;
+  height: 100%;
+  background-color: grey;
+  width: auto;
+  height: 100%;
+}
+

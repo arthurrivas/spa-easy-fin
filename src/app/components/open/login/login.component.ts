@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginModel } from 'src/app/models/login-model';
-import { LoginService } from 'src/app/service/login.service';
+import { AuthService } from 'src/app/service/Auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private loginService: LoginService
+    private authService: AuthService
    ) {}
 
   ngOnInit(): void {
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
 
     // console.log(loginInfo)
 
-    let result = this.loginService.loginUser(loginInfo)
+    let result = this.authService.loginUser(loginInfo)
 
     // console.log(result)
   }
