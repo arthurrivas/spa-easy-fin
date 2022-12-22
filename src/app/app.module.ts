@@ -30,6 +30,7 @@ import { StoreModule } from '@ngrx/store';
 import { AuthGuard } from './security/auth.guard';
 import { StorageService } from './store/user-store.config';
 import { AuthInterceptor } from './security/auth_interceptor';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   {
@@ -80,6 +81,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
+    NgbModule,
   ],
   declarations: [
     AppComponent,
