@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { STORAGE_KEYS } from 'src/config/storage-keys';
+import { STORAGE_KEYS } from 'config/storage-keys';
 import { UserModel } from '../models/user-model';
 
 @Injectable()

@@ -1,35 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Easy-fin</title>
-</head>
-<body>
-  
-  <mat-sidenav-container  class="sidenav-container">
-    <mat-sidenav #sidenav mode="side" [(opened)]="opened" class="mat-sidenav">
-      <mat-list-item routerLink="/profile">
-        <p>Meu perfil</p>
-      </mat-list-item>
-      <mat-list-item routerLink="/dashboard">
-        <p>Dashboard</p>
-      </mat-list-item>
-    </mat-sidenav>
-    
-    <mat-sidenav-content>
-      <mat-toolbar class="mat-toolbar">
-        <button (click)="opened= !opened"><mat-icon>menu</mat-icon></button>
-      </mat-toolbar>
-      <div class="main-router">
-        <router-outlet></router-outlet>
-      </div>
-    </mat-sidenav-content>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Easy-fin</title>
+  </head>
+  <body>
+    <mat-sidenav-container class="sidenav-container">
+      <mat-sidenav #sidenav mode="side" [(opened)]="opened" class="mat-sidenav">
+        <mat-list-item routerLink="/profile">
+          <p>Meu perfil</p>
+        </mat-list-item>
+        <mat-list-item routerLink="/dashboard">
+          <p>Dashboard</p>
+        </mat-list-item>
+      </mat-sidenav>
 
-   --></mat-sidenav-container>
-  
-</body>
+      <mat-sidenav-content>
+        <mat-toolbar class="navbar navbar-light bg-light justify-content-between">
+          <button class="btn btn-light" (click)="opened = !opened">
+            <!-- <mat-icon>menu</mat-icon> -->
+            menu
+          </button>
+          <div class="form-inline my-2 my-lg-0">
+            <button type="button" class="btn btn-secondary">Sair</button>
+          </div>
+        </mat-toolbar>
+        <div class="main-router">
+          <router-outlet></router-outlet>
+        </div>
+      </mat-sidenav-content>
+
+      --></mat-sidenav-container
+    >
+  </body>
 </html>
-
-
