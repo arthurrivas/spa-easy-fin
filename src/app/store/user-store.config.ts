@@ -3,14 +3,17 @@ import { STORAGE_KEYS } from 'config/storage-keys';
 import { UserModel } from '../models/user-model';
 
 @Injectable()
-export class StorageService {
-
-  getToken(): string | null{
-    return localStorage.getItem(STORAGE_KEYS.token)
+export class UserStorageService {
+  getToken(): string | null {
+    return localStorage.getItem(STORAGE_KEYS.token);
   }
 
-  setToken (token: string){
+  setToken(token: string) {
     localStorage.setItem('token', token);
+  }
+  
+  removeToken(): void {
+    localStorage.removeItem(STORAGE_KEYS.token);
   }
 
   getCurrentUser(): UserModel | null {
@@ -29,4 +32,5 @@ export class StorageService {
       localStorage.setItem(STORAGE_KEYS.currentUser, JSON.stringify(obj));
     }
   }
+
 }

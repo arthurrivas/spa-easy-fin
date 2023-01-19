@@ -24,15 +24,13 @@
             menu
           </button>
           <div class="form-inline my-2 my-lg-0">
-            <button type="button" class="btn btn-secondary">Sair</button>
+            <button (click)="logout()" type="button" class="btn btn-secondary">Sair</button>
           </div>
         </mat-toolbar>
         <div class="main-router">
           <router-outlet></router-outlet>
         </div>
       </mat-sidenav-content>
-
-      --></mat-sidenav-container
-    >
+    </mat-sidenav-container>
   </body>
 </html>
