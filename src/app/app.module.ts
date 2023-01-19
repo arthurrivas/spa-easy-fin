@@ -28,7 +28,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 // STORE
 import { StoreModule } from '@ngrx/store';
 import { AuthGuard } from './security/auth.guard';
-import { StorageService } from './store/user-store.config';
+import { UserStorageService } from './store/user-store.config';
 import { AuthInterceptor } from './security/auth_interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -92,8 +92,8 @@ const routes: Routes = [
     BaseOpen,
   ],
   providers: [
-    StorageService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    UserStorageService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
