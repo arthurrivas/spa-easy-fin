@@ -29,10 +29,7 @@ export class LoginComponent implements OnInit {
   submitLogin(){
     var loginInfo = this.loginForm?.getRawValue() as LoginModel
 
-    // console.log(loginInfo)
-
     let result = this.authService.loginUser(loginInfo)
 
-    // console.log(result)
   }
 }
