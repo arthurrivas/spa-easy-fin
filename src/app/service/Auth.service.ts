@@ -33,13 +33,4 @@ export class AuthService {
       );
   }
 
-  async getCurrentUser(){
-    return await this.httpClient.get(`${this.baseUrl}/user/current`, {observe: 'response', responseType: 'json'})
-      .subscribe((res) => {
-
-
-        console.log(res)
-
-      })
-  }
 }
