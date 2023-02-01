@@ -10,7 +10,7 @@
           <div class="col-lg-6 mb-5 mb-lg-0">
             <h1 class="my-5 display-3 fw-bold ls-tight">
               EasyFin <br />
-              <span class="text-primary">Pra aluno burro</span>
+              <span class="text-primary">Ensino de qualidade</span>
             </h1>
             <p style="color: hsl(217, 10%, 50.8%)">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet,
@@ -29,25 +29,28 @@
                   (ngSubmit)="submitLogin()"
                 >
                   <!-- Email input -->
-                  <div class="form-outline mb-4">
-                    <label for="input-email" class="form-label"> Email: </label>
+                  <div class="form-outline mb-4">                    
+                    <label for="input-email" class="form-label"> Email </label>
                     <input
                       id="input-email"
                       class="form-control"
                       type="text"
                       formControlName="email"
+                      placeholder="email_exemplo@email.com"
+                      [class.is-invalid]="loginForm.controls['email'].errors && loginForm.controls['password'].touched "
                     />
                   </div>
                   <!-- Password input -->
                   <div class="form-outline mb-4">
                     <label for="input-password" class="form-label">
-                      Senha:
+                      Senha
                     </label>
                     <input
                       id="input-password"
                       class="form-control"
-                      type="text"
+                      type="password"
                       formControlName="password"
+                      [class.is-invalid]="loginForm.controls['password'].errors && loginForm.controls['password'].touched"
                     />
                   </div>
                   <!-- 2 column grid layout for inline styling -->
@@ -73,7 +76,7 @@
                     </div>
                   </div> -->
                   <!-- Submit button -->
-                  <button type="submit" class="btn btn-primary btn-block mb-4">
+                  <button [disabled]="loginForm.controls['email'].errors || loginForm.controls['password'].errors" type="submit" class="btn btn-primary btn-block mb-4">
                     Entrar
                   </button>
                 </form>
