@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AddressModel } from 'app/models/address.model';
 import { UserModel } from 'app/models/user-model';
 import { UserService } from 'app/service/user.service';
 
@@ -9,7 +10,7 @@ import { UserService } from 'app/service/user.service';
 })
 export class ProfileComponent implements OnInit {
   
-  public user?: UserModel | null = null;
+  public user?: UserModel;
 
   constructor(
     private userService: UserService
@@ -21,9 +22,18 @@ export class ProfileComponent implements OnInit {
 
   getCurrentUser(): void {
     this.userService.getCurrentUser().subscribe((data) => { 
-      console.log(data)
       this.user = data
-      
     })
   }
+
+  getAddress(): AddressModel{
+    return this.user.address
+  }
+
+  getFormatedAddress(): string{
+    return (
+      this.getAddress().city.name + ' - ' + this.getAddress().city.state.acronym
+    );
+  }
+
 }
