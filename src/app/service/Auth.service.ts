@@ -19,7 +19,7 @@ export class AuthService {
     return await this.httpClient
       .post<any>(`${this.baseUrl}/login`, credentials, {
         observe: 'response',
-        responseType: 'json',
+        responseType: 'json'
       })
       .subscribe((res) => {
         
@@ -29,8 +29,7 @@ export class AuthService {
           window.localStorage.setItem('token', token)
           this.router.navigate(['dashboard'])
         }
-      }
-      );
+      })
   }
 
 }
