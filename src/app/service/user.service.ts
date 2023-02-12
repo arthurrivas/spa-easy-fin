@@ -1,4 +1,4 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserModel } from 'app/models/user-model';
 import { environment } from 'environments/environment';
@@ -14,5 +14,9 @@ export class UserService {
 
   getCurrentUser(): Observable<UserModel> {
     return this.httpClient.get<UserModel>(`${this.baseUrl}/user/current`);
+  }
+
+  getUsers(): Observable<UserModel[]> {
+    return this.httpClient.get<UserModel[]>(`${this.baseUrl}/user/`);
   }
 }

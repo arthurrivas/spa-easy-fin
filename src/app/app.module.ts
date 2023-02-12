@@ -1,4 +1,4 @@
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { BaseComponent as BaseAuthencicated } from './components/authenticated/base/base.component';
 import { ProfileComponent } from './components/authenticated/profile/profile.component';
 import { DashboardComponent } from './components/authenticated/dashboard/dashboard.component';
+import { UserComponent } from './components/authenticated/user/user.component';
+import { UserCreateComponent } from './components/authenticated/user/user-create/user-create.component'
 
 import { BaseComponent as BaseOpen } from './components/open/base/base.component';
 import { LoginComponent } from './components/open/login/login.component';
@@ -24,13 +26,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatTableModule } from '@angular/material/table'
 
 // STORE
-import { StoreModule } from '@ngrx/store';
 import { AuthGuard } from './security/auth.guard';
 import { UserStorageService } from './store/user-store.config';
 import { AuthInterceptor } from './security/auth_interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatSelectModule} from "@angular/material/select";
 
 const routes: Routes = [
   {
@@ -44,6 +48,19 @@ const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent,
+      },
+      {
+        path: 'user',
+        children: [
+          {
+            path: '',
+            component: UserComponent
+          },
+          {
+            path: 'create',
+            component: UserCreateComponent,
+          }
+        ]
       },
     ],
     canActivate: [AuthGuard],
@@ -78,10 +95,13 @@ const routes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     MatGridListModule,
+    MatTableModule,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
     NgbModule,
+    MatButtonToggleModule,
+    MatSelectModule,
   ],
   declarations: [
     AppComponent,
@@ -90,6 +110,8 @@ const routes: Routes = [
     LoginComponent,
     BaseAuthencicated,
     BaseOpen,
+    UserComponent,
+    UserCreateComponent,
   ],
   providers: [
     UserStorageService,
