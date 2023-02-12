@@ -1,0 +1,24 @@
+<form [formGroup]="userForm" (ngSubmit)="submit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Nome</mat-label>
+    <input formControlName="name" matInput>
+  </mat-form-field>
+<!--  <mat-form-field appearance="fill">-->
+<!--    <mat-label>Tipo usuario</mat-label>-->
+<!--    <mat-select formControlName="name">-->
+<!--      <mat-option value="1">Manager</mat-option>-->
+<!--      <mat-option value="2">Student</mat-option>-->
+<!--    </mat-select>-->
+<!--  </mat-form-field>-->
+  <mat-form-field>
+    <mat-label ></mat-label>
+    <input formControlName="email" matInput>
+  </mat-form-field>
+<!--  <mat-form-field appearance="fill">-->
+  <!--  <mat-label>Textarea</mat-label>-->
+<!--    <textarea matInput></textarea>-->
+<!--  </mat-form-field>-->
+  <button type="submit" class="btn btn-primary btn-block mb-4">
+    Entrar
+  </button>
+</form>
