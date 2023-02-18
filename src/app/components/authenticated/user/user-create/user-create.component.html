@@ -14,11 +14,20 @@
     <mat-label ></mat-label>
     <input formControlName="email" matInput>
   </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Assignee</mat-label>
+    <input type="text" matInput formControlName="address" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of optionCity | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
 <!--  <mat-form-field appearance="fill">-->
   <!--  <mat-label>Textarea</mat-label>-->
 <!--    <textarea matInput></textarea>-->
 <!--  </mat-form-field>-->
   <button type="submit" class="btn btn-primary btn-block mb-4">
-    Entrar
+    Cadastrar
   </button>
 </form>

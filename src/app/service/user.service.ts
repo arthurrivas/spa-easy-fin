@@ -10,13 +10,14 @@ import { Observable } from 'rxjs';
 export class UserService {
   constructor(private httpClient: HttpClient) {}
 
-  private readonly baseUrl = environment['baseUrl'];
+  private readonly baseUrl = environment['baseUrl'] + '/user';
+
 
   getCurrentUser(): Observable<UserModel> {
-    return this.httpClient.get<UserModel>(`${this.baseUrl}/user/current`);
+    return this.httpClient.get<UserModel>(`${this.baseUrl}/current`);
   }
 
   getUsers(): Observable<UserModel[]> {
-    return this.httpClient.get<UserModel[]>(`${this.baseUrl}/user/`);
+    return this.httpClient.get<UserModel[]>(`${this.baseUrl}/`);
   }
 }
