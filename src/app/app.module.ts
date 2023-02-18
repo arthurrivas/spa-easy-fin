@@ -35,6 +35,7 @@ import { AuthInterceptor } from './security/auth_interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatSelectModule} from "@angular/material/select";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 const routes: Routes = [
   {
@@ -102,6 +103,7 @@ const routes: Routes = [
     NgbModule,
     MatButtonToggleModule,
     MatSelectModule,
+    MatAutocompleteModule
   ],
   declarations: [
     AppComponent,
