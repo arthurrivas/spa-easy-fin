@@ -36,6 +36,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatSelectModule} from "@angular/material/select";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 const routes: Routes = [
   {
@@ -83,28 +85,30 @@ const routes: Routes = [
   },
 ];
 @NgModule({
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatSidenavModule,
-    MatListModule,
-    MatToolbarModule,
-    MatIconModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatGridListModule,
-    MatTableModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    RouterModule.forRoot(routes),
-    NgbModule,
-    MatButtonToggleModule,
-    MatSelectModule,
-    MatAutocompleteModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MatSidenavModule,
+        MatListModule,
+        MatToolbarModule,
+        MatIconModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatGridListModule,
+        MatTableModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        RouterModule.forRoot(routes),
+        NgbModule,
+        MatButtonToggleModule,
+        MatSelectModule,
+        MatAutocompleteModule,
+        MatDatepickerModule,
+        MatNativeDateModule
+    ],
   declarations: [
     AppComponent,
     ProfileComponent,
@@ -117,6 +121,7 @@ const routes: Routes = [
   ],
   providers: [
     UserStorageService,
+    MatDatepickerModule,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],

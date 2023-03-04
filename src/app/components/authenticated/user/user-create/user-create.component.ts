@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserModel} from "../../../../models/user-model";
-import {AddressModel} from "../../../../models/address.model";
 import {CityModel} from "../../../../models/city.model";
-import {map, Observable, startWith} from "rxjs";
+import {debounceTime, map, Observable, startWith} from "rxjs";
+import {CityService} from "../../../../service/city.service";
 
 @Component({
   selector: 'app-user-create',
@@ -13,43 +13,59 @@ import {map, Observable, startWith} from "rxjs";
 export class UserCreateComponent implements OnInit {
 
   userForm?: FormGroup;
-  options: AddressModel[] = [];
-  public optionCity: Observable<AddressModel[]>;
+  options: CityModel[] = [];
+  public optionCity: Observable<CityModel[]>;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private cityService: CityService
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+
     this.userForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', Validators.required],
       phone: ['', Validators.required],
-      address :['', Validators.required]
+      birthday: ['', Validators.required],
+      address : new FormGroup({
+        number: new FormControl(Validators.required),
+        city: new FormControl(CityModel, Validators.required)
+      })
     })
 
-    this.optionCity = this.userForm.get('address').valueChanges.pipe(
+    this.optionCity = this.userForm.get('address.city').valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value || ''))
+      debounceTime(600),
+      map(value => this.filter(value || ''))
     )
 
   }
 
-  private _filter(value: string): AddressModel[] {
-    const filterValue = ''
-    return this.options.filter(option => option.city.name.toLowerCase().includes(filterValue));
+  private filter(value: string): CityModel[] {
+
+    this.getCities(value)
+
+    const filterValue = value
+    return this.options.filter(option => option.name.toLowerCase().includes(filterValue));
   }
 
   public submit(){
 
-    console.log(this.userForm.get('address'))
+    // console.log(this.userForm.get('address'))
 
     let data = this.userForm.getRawValue() as UserModel
 
     console.log(data)
   }
 
-  public getCities(){
+  getCities(name: string){
+    this.cityService.searchCity(name).subscribe((data)=> {
+      this.options = data.content
+    })
+  }
 
+  public formatedTextCity(city:CityModel): string{
+    return (city.name + " - " + city.state.acronym) || ""
   }
 }
