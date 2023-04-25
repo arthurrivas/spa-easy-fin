@@ -17,6 +17,10 @@ export class UserService {
     return this.httpClient.get<UserModel>(`${this.baseUrl}/current`);
   }
 
+  async getUserById(idUser: number): Promise<Observable<UserModel>>{
+    return this.httpClient.get<UserModel>(`${this.baseUrl}/${idUser}`)
+  }
+
   getUsers(): Observable<UserModel[]> {
     return this.httpClient.get<UserModel[]>(`${this.baseUrl}/`);
   }

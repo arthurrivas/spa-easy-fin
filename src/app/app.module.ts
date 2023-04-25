@@ -10,7 +10,7 @@ import { BaseComponent as BaseAuthencicated } from './components/authenticated/b
 import { ProfileComponent } from './components/authenticated/profile/profile.component';
 import { DashboardComponent } from './components/authenticated/dashboard/dashboard.component';
 import { UserComponent } from './components/authenticated/user/user.component';
-import { UserCreateComponent } from './components/authenticated/user/user-create/user-create.component'
+import { UserCreateComponent } from './components/authenticated/user-create/user-create.component'
 
 import { BaseComponent as BaseOpen } from './components/open/base/base.component';
 import { LoginComponent } from './components/open/login/login.component';
@@ -62,6 +62,10 @@ const routes: Routes = [
           {
             path: 'create',
             component: UserCreateComponent,
+          },
+          {
+            path: 'edit/:id',
+            component: UserCreateComponent,
           }
         ]
       },
@@ -85,30 +89,29 @@ const routes: Routes = [
   },
 ];
 @NgModule({
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        MatSidenavModule,
-        MatListModule,
-        MatToolbarModule,
-        MatIconModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatCardModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatGridListModule,
-        MatTableModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        RouterModule.forRoot(routes),
-        NgbModule,
-        MatButtonToggleModule,
-        MatSelectModule,
-        MatAutocompleteModule,
-        MatDatepickerModule,
-        MatNativeDateModule
-    ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MatSidenavModule,
+    MatListModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatGridListModule,
+    MatTableModule,
+    HttpClientModule,
+    RouterModule.forRoot(routes),
+    NgbModule,
+    MatButtonToggleModule,
+    MatSelectModule,
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+  ],
   declarations: [
     AppComponent,
     ProfileComponent,

@@ -1,0 +1,65 @@
+<form class="container-fluid" [formGroup]="userForm" (ngSubmit)="submit()">
+  <mat-form-field class="form-control" appearance="fill">
+    <mat-label>Perfil</mat-label>
+    <input type="text" matInput formControlName="codProfile" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="formatedTextProfile">
+      <mat-option *ngFor="let item of profilesOptions" [value]="item.id" >
+        {{item.label}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <!--    NAME-->
+  <mat-form-field appearance="fill" class="form-control">
+    <mat-label>Nome</mat-label>
+    <input formControlName="name" matInput>
+  </mat-form-field>
+  <!--    EMAIL-->
+  <mat-form-field class="form-control">
+    <mat-label>Email</mat-label>
+    <input formControlName="email" matInput>
+  </mat-form-field>
+
+<!--  PASSWORD-->
+  <mat-form-field class="form-control">
+    <mat-label>Senha</mat-label>
+    <input matInput placeholder="Password" [type]="hidePassword ? 'password' : 'text'" formControlName="password" required>
+    <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+  </mat-form-field>
+
+<!--  PHONE -->
+  <mat-form-field class="form-control">
+    <mat-label>Celular</mat-label>
+    <input placeholder="xx xxxxx xxxx" formControlName="phone" matInput>
+  </mat-form-field>
+
+
+  <!--  BIRTHDAY-->
+  <mat-form-field class="form-control" appearance="fill" >
+    <mat-label>Choose a date</mat-label>
+    <input matInput formControlName="birthday" [matDatepicker]="picker">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <!--  CIDADE-->
+  <mat-form-field class="form-control" formGroupName="address" appearance="fill">
+    <mat-label>Cidade</mat-label>
+    <input type="text" matInput formControlName="city" [matAutocomplete]="auto1">
+    <mat-autocomplete #auto1="matAutocomplete" [displayWith]="formatedTextCity">
+      <mat-option *ngFor="let option of optionCity | async" [value]="option">
+        {{formatedTextCity(option)}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <!--  NUMERO ENDERECO-->
+  <mat-form-field class="form-control" formGroupName="address" appearance="fill">
+    <mat-label>Número</mat-label>
+    <input type="number" matInput formControlName="number">
+  </mat-form-field>
+
+  <button type="submit" class="btn btn-primary btn-block mb-4">
+    Cadastrar
+  </button>
+</form>
