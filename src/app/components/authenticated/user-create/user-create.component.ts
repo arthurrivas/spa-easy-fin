@@ -17,13 +17,12 @@ export class UserCreateComponent implements OnInit {
   public idUser: number;
 
   userForm?: FormGroup;
-  addressForm?: FormGroup;
   options: CityModel[] = [];
   public optionCity: Observable<CityModel[]>;
 
   public hidePassword: boolean = true
 
-  // PERMISOES USUARIO
+  // USER ROLES
   public profilesOptions = [
     {
       id: 1,
@@ -48,12 +47,9 @@ export class UserCreateComponent implements OnInit {
     private cityService: CityService,
     private userService: UserService,
     private activeRoute: ActivatedRoute
-  ) { }
+  ){}
 
   async ngOnInit() {
-
-    // let userEdit: UserModel;
-
     this.activeRoute.paramMap.subscribe((params: ParamMap) => {
       this.idUser = Number(params.get('id'));
     });
@@ -61,11 +57,11 @@ export class UserCreateComponent implements OnInit {
     this.userForm = this.formBuilder.group({
       id: null,
       name: ['', Validators.required],
-      email: ['', Validators.required, Validators.email],
+      email: ['', [Validators.required, Validators.email]],
       password: ["", Validators.required],
-      phone: [null, [Validators.required
+      phone: ['', Validators.required
         // Validators.pattern('^\\s*(\\d{2}|\\d{0})[-. ]?(\\d{5}|\\d{4})[-. ]?(\\d{4})[-. ]?\\s*$')]
-      ]],
+      ],
       birthday: ['', Validators.required],
       codProfile: ['', Validators.required],
       address : this.formBuilder.group({
@@ -76,13 +72,8 @@ export class UserCreateComponent implements OnInit {
     })
 
 
-    this.optionCity = this.userForm.get('address.city').valueChanges.pipe(
-      startWith(''),
-      debounceTime(600),
-      map(value => this.filter(value || ''))
-    )
 
-    if (this.idUser){
+    if (this.isEdit()){
       await this.userService.getUserById(this.idUser)
         .then(x => x.pipe(first())
           .subscribe(x => {
@@ -91,6 +82,11 @@ export class UserCreateComponent implements OnInit {
       )
     }
 
+    this.optionCity = this.userForm.get('address.city').valueChanges.pipe(
+      startWith(''),
+      debounceTime(600),
+      map(value => this.filter(value || ''))
+    )
 
   }
 
@@ -108,11 +104,11 @@ export class UserCreateComponent implements OnInit {
 
     let data = this.userForm.getRawValue() as UserModel
 
-    data.id = this.idUser;
-
     console.log(data)
-    // console.log(this.addressForm.getRawValue())
+  }
 
+  isEdit(): boolean{
+    return this.idUser != null
   }
 
   getCities(name: string){
