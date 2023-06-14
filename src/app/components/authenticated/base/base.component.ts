@@ -13,7 +13,8 @@ export class BaseComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private userStore: UserStorageService
+    private userStore: UserStorageService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {}

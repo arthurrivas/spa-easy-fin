@@ -33,4 +33,8 @@ export class AuthService {
       })
   }
 
+  public logoff(){
+    this.userStorageService.removeToken()
+  }
+
 }
