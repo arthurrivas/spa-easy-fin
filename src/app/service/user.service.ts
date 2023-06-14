@@ -24,4 +24,8 @@ export class UserService {
   getUsers(): Observable<UserModel[]> {
     return this.httpClient.get<UserModel[]>(`${this.baseUrl}/`);
   }
+
+  async createUser(newObj :UserModel): Promise<Observable<UserModel>>{
+    return this.httpClient.post(`${this.baseUrl}/`, newObj)
+  }
 }

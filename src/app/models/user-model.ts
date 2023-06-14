@@ -6,6 +6,6 @@ export class UserModel {
     email?: string;
     birthday?: string;
     phone?: string;
-    perfis?: string[]
+    perfis?: number[]
     address?: AddressModel
 }

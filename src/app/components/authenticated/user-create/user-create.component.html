@@ -47,9 +47,9 @@
   <mat-form-field class="form-control" formGroupName="address" appearance="fill">
     <mat-label>Cidade</mat-label>
     <input type="text" matInput formControlName="city" [matAutocomplete]="auto1">
-    <mat-autocomplete #auto1="matAutocomplete" [displayWith]="formatedTextCity">
+    <mat-autocomplete #auto1="matAutocomplete" [displayWith]="formattedTextCity">
       <mat-option *ngFor="let option of optionCity | async" [value]="option">
-        {{formatedTextCity(option)}}
+        {{formattedTextCity(option)}}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>

@@ -6,6 +6,7 @@ import {debounceTime, first, map, Observable, startWith} from "rxjs";
 import {CityService} from "../../../service/city.service";
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {UserService} from "../../../service/user.service";
+import {getXHRResponse} from "rxjs/internal/ajax/getXHRResponse";
 
 @Component({
   selector: 'app-user-create',
@@ -14,7 +15,7 @@ import {UserService} from "../../../service/user.service";
 })
 export class UserCreateComponent implements OnInit {
 
-  public idUser: number;
+  public idUser: number = null;
 
   userForm?: FormGroup;
   options: CityModel[] = [];
@@ -47,17 +48,20 @@ export class UserCreateComponent implements OnInit {
     private cityService: CityService,
     private userService: UserService,
     private activeRoute: ActivatedRoute
-  ){}
+  ){
+    this.formatedTextProfile = this.formatedTextProfile.bind(this)
+  }
 
   async ngOnInit() {
     this.activeRoute.paramMap.subscribe((params: ParamMap) => {
-      this.idUser = Number(params.get('id'));
+      this.idUser = params.get('id') ? Number(params.get('id')) : null;
     });
 
     this.userForm = this.formBuilder.group({
       id: null,
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      ...(this.isEdit() && { password: ['', Validators.required] }),
       password: ["", Validators.required],
       phone: ['', Validators.required
         // Validators.pattern('^\\s*(\\d{2}|\\d{0})[-. ]?(\\d{5}|\\d{4})[-. ]?(\\d{4})[-. ]?\\s*$')]
@@ -71,13 +75,14 @@ export class UserCreateComponent implements OnInit {
       })
     })
 
-
-
     if (this.isEdit()){
       await this.userService.getUserById(this.idUser)
         .then(x => x.pipe(first())
           .subscribe(x => {
             this.userForm.patchValue(x)
+            this.userForm.patchValue({
+              codProfile: x.perfis[0]
+            })
           })
       )
     }
@@ -99,12 +104,19 @@ export class UserCreateComponent implements OnInit {
     return this.options.filter(option => option.name.toLowerCase().includes(filterValue));
   }
 
-  // CREATE USER
-  public submit(){
+  // CREATE/EDIT USER
+  public async submit(){
 
     let data = this.userForm.getRawValue() as UserModel
-
-    console.log(data)
+    if (!this.isEdit()) {
+      await this.userService.createUser(data).then(response => {
+        response.subscribe(data => {
+          console.log(data)
+        })
+      })
+    } else {
+      console.log('opa')
+    }
   }
 
   isEdit(): boolean{
@@ -117,12 +129,16 @@ export class UserCreateComponent implements OnInit {
     })
   }
 
-  public formatedTextCity(city:CityModel): string{
-    return (city.name + " - " + city.state.acronym) || ""
+  public formattedTextCity(city:CityModel): string{
+    return city != null ? (city.name + " - " + city.state.acronym) : ""
   }
 
-  public formatedTextProfile(profile: { id: number, name: string, label:string }){
-    return profile.label
+  public formatedTextProfile(codProfile: number): string{
+    let selected = codProfile != null ?
+      this.profilesOptions.find(value => value.id == codProfile)
+      : {label: "Nada selecionado"}
+
+    return selected.label
   }
 
 }
